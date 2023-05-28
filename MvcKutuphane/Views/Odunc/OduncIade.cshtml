@@ -1,0 +1,53 @@
+﻿@model MvcKutuphane.Models.Entity.TBLHAREKET
+@{
+    ViewBag.Title = "OduncIade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<h2>Ödünç İade</h2>
+
+@using (Html.BeginForm("OduncGuncelle", "Odunc", FormMethod.Post))
+{
+    <div style="margin-bottom:15px"></div>
+
+    <div class="form-group">
+        <label>Hareket ID:</label>
+        @Html.TextBoxFor(h => h.HAREKETID, new { @class = "form-control" })
+
+
+        <label>Kitap Adı:</label>
+        @Html.TextBoxFor(h => h.TBLKITAP.KITAPAD, new { @class = "form-control" })
+
+        <label>Üye ID:</label>
+        @Html.TextBoxFor(h => h.TBLUYELER.UYEID, new { @class = "form-control" })
+
+        <label>Üye Ad:</label>
+        @Html.TextBoxFor(h => h.TBLUYELER.AD, new { @class = "form-control" })
+
+        <label>Üye Soyad:</label>
+        @Html.TextBoxFor(h => h.TBLUYELER.SOYAD, new { @class = "form-control" })
+
+        <label>Personel:</label>
+        @Html.TextBoxFor(h => h.TBLPERSONEL.PERSONEL, new { @class = "form-control" })
+
+        <label>Alış Tarihi:</label>
+        @Html.TextBoxFor(h => h.ALISTARIH, "{0:dd.MM.yyyy}", new { @class = "form-control" })
+
+        <label>Normal İade Tarihi:</label>
+        @Html.TextBoxFor(h => h.IADETARIH, "{0:dd.MM.yyyy}", new { @class = "form-control" })
+
+        <label>Üyenin İade Ettiği Tarih:</label>
+        @Html.TextBoxFor(k => k.UYEGETIRTARIH, new { @Value = DateTime.Now.ToShortDateString(), @class = "form-control" })
+
+
+
+        <label> Geç Gelen Gün Sayısı</label>
+        <input type="text" class="form-control" id="Gecinput" value="@ViewBag.dgr" />
+    </div>
+    <div>
+        <button class="btn btn-warning">Ödünç Kitabı Geri Al</button>
+    </div>
+    
+}

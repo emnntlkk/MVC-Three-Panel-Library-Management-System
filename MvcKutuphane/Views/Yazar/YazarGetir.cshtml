@@ -1,0 +1,49 @@
+﻿@model MvcKutuphane.Models.Entity.TBLYAZAR
+@{
+    ViewBag.Title = "YazarGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .marginBottom {
+        margin-bottom: 15px
+    }
+</style>
+
+@using (Html.BeginForm("YazarGuncelle", "Yazar", FormMethod.Post))
+{
+
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Yazar ID</label>
+            @Html.TextBoxFor(y => y.YAZARID, new { @readonly = "readonly", @class = "form-control" })
+            
+        </div>
+    </div>
+    <div class="marginBottom">
+        <div class="form-group">
+            <label>Yazar Ad</label>
+            @Html.TextBoxFor(y => y.AD, new { @class = "form-control" })
+            @Html.ValidationMessageFor(y => y.AD)
+            
+        </div>
+    </div>
+
+    <div class="marginBottom">
+        <div class="form-group">
+            <label>Yazar Soyad</label>
+            @Html.TextBoxFor(y => y.SOYAD, new { @class = "form-control" })
+            @Html.ValidationMessageFor(y => y.SOYAD)
+        </div>
+    </div>
+       <div class="marginBottom">
+        <div class="form-group">
+            <label>Yazar Detay</label>
+            @Html.TextBoxFor(y => y.DETAY, new {@class="form-control"})
+        </div>
+    </div>
+
+    <button class="btn btn-warning" onclick="return confirm('Güncellemek istiyor musunuz?')">Yazar Bilgilerini Güncelle</button>
+}
+

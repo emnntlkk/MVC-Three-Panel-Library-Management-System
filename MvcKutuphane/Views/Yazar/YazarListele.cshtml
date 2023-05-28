@@ -1,0 +1,57 @@
+﻿@using MvcKutuphane.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLYAZAR>
+
+@{
+    ViewBag.Title = "YazarListele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Yazarlar</h3>
+
+@using (Html.BeginForm("YazarListele", "Yazar", FormMethod.Get))
+{
+    <div style="margin-bottom:15px; margin-top:15px">
+        <b>Kitap ara:</b> @Html.TextBox("search")
+        <input type="submit" value="Ara" />
+
+    </div>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>DETAY</th>
+        <td>SİL</td>
+        <td>GÜNCELLE</td>
+        <td>YAZARIN KİTAPLARI</td>
+    </tr>
+    @foreach (var yazar in Model)
+    {
+        <tr>
+            <td>@yazar.YAZARID</td>
+            <td>@yazar.AD</td>
+            <td>@yazar.SOYAD</td>
+            <td>@yazar.DETAY</td>
+            <td>@Html.ActionLink("Sil", "YazarSil", new { id = yazar.YAZARID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
+            <td>
+                @Html.ActionLink("Güncelle", "YazarGetir", new { id = yazar.YAZARID }, new
+                {
+           @class = "btn btn-success"
+                })
+            </td>
+            <td>
+                @Html.ActionLink("Yazarın Kitapları", "YazarKitaplar", new { id = yazar.YAZARID }, new
+                {
+           @class = "btn btn-success", style="background-color:lightsalmon"
+                })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("YazarListele", new { page }))
+<a class="btn btn-primary" href="/Yazar/YazarEkle/">Yeni Yazar Ekle</a>

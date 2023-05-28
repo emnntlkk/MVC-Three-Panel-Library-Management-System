@@ -1,0 +1,56 @@
+﻿@model MvcKutuphane.Models.Entity.TBLKITAP
+@{
+    ViewBag.Title = "kitapEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("kitapEkle", "Kitap", FormMethod.Post))
+{
+ 
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Kitap AD</label>
+            @Html.TextBoxFor(k => k.KITAPAD, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Kategori</label>
+            @Html.DropDownListFor(k => k.TBLKATEGORI.KATEGORIID, (List<SelectListItem>)ViewBag.ktpDgr, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Yazar</label>
+            @Html.DropDownListFor(k => k.TBLYAZAR.YAZARID, (List<SelectListItem>)ViewBag.yzrDgr, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Sayfa Sayısı</label>
+            @Html.TextBoxFor(k => k.SAYFA, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Basım Yılı</label>
+            @Html.TextBoxFor(k => k.BASIMYIL, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Yayınevi</label>
+            @Html.TextBoxFor(k => k.YAYINEVİ, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <input type="hidden" name="Durum" value="true"/>
+    <button class="btn btn-warning" onclick="return confirm('Kitap eklemek istiyor musunuz?')">Kitap Ekle</button>
+
+}
+

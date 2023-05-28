@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #1440eb;
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+@@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 15px;}
+}
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="/Istatistik/Index/"><i class="glyphicon glyphicon-home"></i> &nbsp; Ana Sayfa</a>
+        <a href="/Kategori/Index/"><i class="glyphicon glyphicon-list"></i> &nbsp; Kategoriler</a>
+        <a href="/Kitap/kitapListele/"><i class="glyphicon glyphicon-book"></i> &nbsp; Kitaplar</a>
+        <a href="/Yazar/YazarListele/"><i class="glyphicon glyphicon-pencil"></i> &nbsp; Yazarlar</a>
+        <a href="/Uye/UyeListele"><i class="glyphicon glyphicon-user"></i> &nbsp; Üyeler</a>
+        <a href="/Personel/PersonelListele"><i class="glyphicon glyphicon-briefcase"></i> &nbsp; Personeller</a>
+        @if(User.IsInRole("A")){
+        <a href="/Odunc/OduncVer/"><i class="glyphicon glyphicon-circle-arrow-left"></i> &nbsp; Ödünç Kitap Ver</a>
+        <a href="/Odunc/OduncAl/"><i class="glyphicon glyphicon-circle-arrow-right"></i> &nbsp; Ödünç Kitap Al</a>
+        }
+        <a href="/Duyuru/Duyuru/"><i class="glyphicon glyphicon-earphone"></i> &nbsp; Duyurular</a>
+        <a href="/Islemler/IslemListele/"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; İşlemler</a>
+        <a href="/Istatistik/havaDurumu/"><i class="glyphicon glyphicon-cloud"></i> &nbsp; Hava Raporu</a>
+        <a href="/Istatistik/HavaKartlari/"><i class="glyphicon glyphicon-plus"></i> &nbsp; Hava Kartları</a>
+        <a href="/Istatistik/Galeri/"><i class="glyphicon glyphicon-picture"></i> &nbsp; Galeri</a>
+        <a href="/Istatistik/linqKartlari/"><i class="glyphicon glyphicon-bookmark"></i> &nbsp; Linq Kartları</a>
+        <a href="/Vitrin/vitrin/"><i class="glyphicon glyphicon-gift"></i> &nbsp; Vitrin</a>
+        <a href="/Grafik/Grafikler/"><i class="glyphicon glyphicon-console"></i> &nbsp; Grafikler</a>
+        <a href="/Ayarlar/ayarlar2/"><i class="glyphicon glyphicon-cog"></i> &nbsp; Ayarlar</a>
+        <a href="/Panelim/LogOut/"><i class="glyphicon glyphicon-remove-sign"></i> &nbsp; Çıkış</a>
+
+
+
+    </div>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
+

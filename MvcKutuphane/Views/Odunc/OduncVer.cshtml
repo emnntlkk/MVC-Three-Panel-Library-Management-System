@@ -1,0 +1,57 @@
+﻿@model MvcKutuphane.Models.Entity.TBLHAREKET
+@{
+    ViewBag.Title = "OduncVer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Ödünç Verme</h2>
+
+
+@using (Html.BeginForm("OduncVer", "Odunc", FormMethod.Post))
+{
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Üye</label>
+            @*@Html.TextBoxFor(k => k.UYE, new { @class = "form-control" })*@
+            @Html.DropDownListFor(y => y.TBLUYELER.UYEID, (List<SelectListItem>)ViewBag.deger1, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Kitap</label>
+            @Html.DropDownListFor(y => y.TBLKITAP.KITAPID, (List<SelectListItem>)ViewBag.deger2, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Personel</label>
+            @Html.DropDownListFor(y => y.TBLPERSONEL.PERSONELID, (List<SelectListItem>)ViewBag.deger3, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Kitap Alış Tarihi</label>
+            @Html.TextBoxFor(k => k.ALISTARIH, new { @Value = DateTime.Now.ToShortDateString(), @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="marginBottom" style="margin-top:15px">
+        <div class="form-group">
+            <label>Kitap İade Tarihi</label>
+            @Html.TextBoxFor(k => k.IADETARIH, new { @Value = DateTime.Now.AddDays(7).ToShortDateString(), @class = "form-control" })
+        </div>
+    </div>
+    
+
+
+    <button class="btn btn-warning" onclick="return confirm('Kitabı ödünç vermek istiyor musunuz?')">
+        Kitabı Ödünç Ver
+    </button>
+    <input type="hidden" value="false" name="ISLEMDURUM" />
+
+}
+
